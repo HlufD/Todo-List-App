@@ -9,13 +9,13 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 import("./styles/main.scss");
 
 function App() {
-  const { getTodos, storeTodos } = useLocalStorage("todos");
+  const { getTodos } = useLocalStorage("todos");
 
   useEffect(() => {
-    getTodos() == undefined
-      ? localStorage.setItem("todos", JSON.stringify([]))
-      : null;
-  }, [getTodos, storeTodos]);
+    if (getTodos() == undefined) {
+      localStorage.setItem("todos", JSON.stringify([]));
+    }
+  }, [getTodos]);
   return (
     <>
       <div className="wrapper">

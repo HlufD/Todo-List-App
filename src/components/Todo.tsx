@@ -13,17 +13,17 @@ function Todo({ todo }: { todo: Task }) {
     toast.success("Task deleted");
   };
 
-  const onChacked = (id: string) => {
+  const onChecked = (id: string) => {
     toggleTodo(id);
   };
   return (
-    <div key={todo.id} className="todo">
+    <div className="todo">
       <div className="todo-chekeck">
         <input
           type="checkbox"
           name=""
           checked={todo.isCompleted}
-          onChange={() => onChacked(todo.id)}
+          onChange={() => onChecked(todo.id)}
         />
         <p>{todo.task}</p>
         <div
