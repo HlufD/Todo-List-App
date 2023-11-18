@@ -1,20 +1,18 @@
 import { useContext, useState } from "react";
 import TodoContext from "../context/todoContext";
-
-interface Task {
-  id: string;
-  task: string;
-  category: string;
-  isCompleted: boolean;
-}
+import { Task } from "../types/Task";
+import { toast } from "react-toastify";
+import("../styles/TodoForm.scss");
 
 function TodoForm() {
-  const [todo, setTodo] = useState<Task>({
+  const intialState = {
     id: "",
     task: "",
     category: "",
     isCompleted: false,
-  });
+  };
+  const [todo, setTodo] = useState<Task>(intialState);
+
   const { addTodo } = useContext(TodoContext);
 
   const onChangeHandler = (
@@ -27,15 +25,21 @@ function TodoForm() {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    addTodo(todo);
+    if (todo.category && todo.task) {
+      addTodo(todo);
+      toast.success("Todo added");
+      setTodo(intialState);
+    } else {
+      toast.error("Task ad Category can't be empty!");
+    }
   };
 
   return (
-    <div className="wrapper">
+    <div className="form-wrapper">
       <form>
         <input
           type="text"
-          placeholder="Task"
+          placeholder="New Task"
           onChange={onChangeHandler}
           name="task"
           value={todo.task}
@@ -49,7 +53,7 @@ function TodoForm() {
         />
 
         <button type="submit" onClick={onSubmitHandler}>
-          Create
+          Add
         </button>
       </form>
     </div>

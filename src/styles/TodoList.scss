@@ -1,0 +1,33 @@
+.todo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 10px;
+    border-radius: 5px;
+    background-color: #F4F6F7;
+    margin-top: 10px;
+
+    .todo-chekeck {
+        width: 80%;
+        display: flex;
+        font-weight: 100;
+
+        input {
+            margin-right: 10px;
+        }
+    }
+
+    .acctions {
+        width: 20%;
+    }
+}
+
+.select {
+    padding: 10px;
+    margin: 14px 0;
+    width: 100px;
+    border: 1px solid blue;
+    border-radius: 5px;
+    outline: none;
+
+}

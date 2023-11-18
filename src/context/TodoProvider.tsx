@@ -9,29 +9,24 @@ interface props {
 }
 
 const TodoProvider: React.FC<props> = ({ children }) => {
-  const { storeTodos, getTodos, deleteTodo } = useLocalStorage("todos");
+  const { storeTodos, getTodos, deleteTodo, editTodo } =
+    useLocalStorage("todos");
   const [todos, setTodos] = useState<Task[]>(getTodos() || []);
+
   const addTodo = (task: Task) => {
     task.id = uuid();
-    setTodos([...todos, task]);
     storeTodos(task);
+    setTodos(getTodos());
   };
 
   const toggleTodo = (id: string) => {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, isCompleted: !todo.isCompleted };
-        } else {
-          return todo;
-        }
-      })
-    );
+    editTodo(id);
+    setTodos(getTodos());
   };
 
   const removeTodo = (id: string) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
     deleteTodo(id);
+    setTodos(getTodos());
   };
 
   return (

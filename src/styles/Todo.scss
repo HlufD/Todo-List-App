@@ -1,0 +1,23 @@
+.todos {
+
+    width: 100%;
+    background-color: white;
+    padding: 8px;
+
+    .todo-chekeck {
+        position: relative;
+
+
+        .straight-line {
+            width: 100%;
+            height: 1px;
+            background-color: rgb(9, 93, 104);
+            position: absolute;
+            top: 8px;
+            left: 0;
+        }
+    }
+
+
+
+}

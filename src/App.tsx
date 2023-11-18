@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
-import Modal from "./components/modal";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import { useLocalStorage } from "./hooks/useLocalStorage";
@@ -8,7 +9,6 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 import("./styles/main.scss");
 
 function App() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { getTodos, storeTodos } = useLocalStorage("todos");
 
   useEffect(() => {
@@ -22,10 +22,8 @@ function App() {
         <p className="title">My Todos</p>
         <TodoForm />
         <TodoList />
-        <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-          <TodoForm />
-        </Modal>
       </div>
+      <ToastContainer />
     </>
   );
 }
